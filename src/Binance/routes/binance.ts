@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
   console.log(userID)
   // Her kan du hente ut req.body.userID og bruke den videre for å hente accountInformation til den brukeren.
   if (!userID) {
-    res.send(404)
+    res.send(500)
   }
 
   try {
