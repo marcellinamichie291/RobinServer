@@ -2,6 +2,7 @@
   "name": "RobinServer",
   "version": "1.0.0",
   "main": "dist/src/Binance/index.js",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "ts-node-dev --exit-child index.ts",
     "build": "tsc",
