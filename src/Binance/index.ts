@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import binance from "./src/Binance/routes/binance";
+import binance from "../Binance/routes/binance";
 
 dotenv.config();
 
