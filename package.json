@@ -1,10 +1,10 @@
 {
   "name": "RobinServer",
   "version": "1.0.0",
-  "main": "dist/src/Binance/index.js",
+  "main": "dist/index.js",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "ts-node-dev --exit-child index.ts",
+    "dev": "ts-node-dev --exit-child src/Binance/index.ts",
     "build": "tsc",
     "start": "node ./dist/index.js",
     "lint": "eslint \"**/*.{js,ts}\" --ignore-path=.prettierignore",
