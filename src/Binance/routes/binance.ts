@@ -29,12 +29,6 @@ router.post("/", jsonParser, async (req, res) => {
         apiKey = doc.data().APIKey;
         apiSecret = doc.data().APISecret;
 
-        // website you wish to  allow to connet
-        res.setHeader('Access-Control-Allow-Origin','http://rorobot.io');
-
-        // request method you wish to allow
-        res.setHeader('Access-Control-Allow-Methods','GET, POST');
-
         res.send(await getAccountInformation(apiKey, apiSecret));
       }
     } catch (e) {
