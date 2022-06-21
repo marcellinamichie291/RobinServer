@@ -1,16 +1,14 @@
 import Binance from "binance-api-node";
 
-export const getLiveAggregatedTradeDataFeed = async () => {
+export const getLiveAggregatedTradeDataFeed = async (APIKey: string, APISecret: string) => {
     const binanceClient = Binance({
-        apiKey: "JoQkY9IKmVlYGK72sFwX6SbtYcUj4P0wHK875AGqK5FphHrZrrNuM6VeogrjNUEa",
-        apiSecret: "gMM1ZGermnSuZTMWE6Ze09ZXfSuFqZ87sAwsZSyTkUTHtWbpfIwlJGXwnWMzuukD"
+        apiKey: APIKey,
+        apiSecret: APISecret
     });
 
-    const result = binanceClient.ws.aggTrades(["ETHBTC"], trade => {
-        console.log(trade)
+    const clean = binanceClient.ws.aggTrades(["ETHBTC"], trade => {
+        return(trade);
     })
 
-    return {
-        result,
-    };
+    clean();
 };

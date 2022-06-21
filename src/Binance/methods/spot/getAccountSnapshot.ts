@@ -1,9 +1,9 @@
 import Binance from "binance-api-node";
 
-export const getAccountSnapshot = async () => {
+export const getAccountSnapshot = async (APIKey: string, APISecret: string) => {
     const binanceClient = Binance({
-        apiKey: "JoQkY9IKmVlYGK72sFwX6SbtYcUj4P0wHK875AGqK5FphHrZrrNuM6VeogrjNUEa",
-        apiSecret: "gMM1ZGermnSuZTMWE6Ze09ZXfSuFqZ87sAwsZSyTkUTHtWbpfIwlJGXwnWMzuukD"
+        apiKey: APIKey,
+        apiSecret: APISecret
     });
 
     const result = await binanceClient.accountSnapshot({

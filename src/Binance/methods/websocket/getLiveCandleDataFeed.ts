@@ -1,16 +1,14 @@
 import Binance from "binance-api-node";
 
-export const getLiveCandleDataFeed = async () => {
+export const getLiveCandleDataFeed = async (APIKey: string, APISecret: string) => {
     const binanceClient = Binance({
-        apiKey: "JoQkY9IKmVlYGK72sFwX6SbtYcUj4P0wHK875AGqK5FphHrZrrNuM6VeogrjNUEa",
-        apiSecret: "gMM1ZGermnSuZTMWE6Ze09ZXfSuFqZ87sAwsZSyTkUTHtWbpfIwlJGXwnWMzuukD"
+        apiKey: APIKey,
+        apiSecret: APISecret
     });
 
-    const result = binanceClient.ws.candles("ETHBTC", "1m", candle => {
-        console.log(candle)
+    const clean = binanceClient.ws.candles("ETHBTC", "1m", candle => {
+        return(candle);
     })
 
-    return {
-        result,
-    };
+    clean();
 };
