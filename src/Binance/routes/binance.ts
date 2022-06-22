@@ -9,7 +9,7 @@ const router = express.Router();
 
 const jsonParser = bodyParser.json();
 
-router.post("/", jsonParser, async (req, res) => {
+router.post("/test", jsonParser, async (req, res) => {
   if (req.body) {
     const userID = req.body.userID;
 
