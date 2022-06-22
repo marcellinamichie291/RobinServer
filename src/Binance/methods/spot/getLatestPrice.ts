@@ -6,7 +6,9 @@ export const getLatestPrice = async (APIKey: string, APISecret: string) => {
         apiSecret: APISecret
     });
 
-    const result = await binanceClient.prices({});
+    const result = await binanceClient.prices({
+        symbol: 'ETHBTC, BTCUSDT'
+    });
 
     return {
         result,

@@ -1,7 +1,7 @@
 import express from "express"
 import bodyParser from "body-parser"
 import { getAccountInformation } from "../methods/spot/getAccountInformation";
-import { getExchangeInformation } from "../methods/spot/getExchangeInformation";
+import { getLatestPrice } from "../methods/spot/getLatestPrice";
 import { getDailyStats } from "../methods/websocket/getDailyStats";
 import { db } from "../../../firebase/Config"
 
@@ -40,7 +40,7 @@ router.post("/getAccountInformation", jsonParser, async (req, res) => {
   }
 });
 
-router.post("/getExchangeInformation", jsonParser, async (req, res) => {
+router.post("/getLatestPrice", jsonParser, async (req, res) => {
   if (req.body) {
     const userID = req.body.userID;
 
@@ -60,7 +60,7 @@ router.post("/getExchangeInformation", jsonParser, async (req, res) => {
         apiKey = doc.data().APIKey;
         apiSecret = doc.data().APISecret;
 
-        res.send(await getExchangeInformation(apiKey, apiSecret));
+        res.send(await getLatestPrice(apiKey, apiSecret));
       }
     } catch (e) {
       console.error(e);
