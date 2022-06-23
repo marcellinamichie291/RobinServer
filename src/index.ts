@@ -4,7 +4,7 @@ import binance from "./Binance/routes/binance";
 
 const app = express();
 const port = process.env.PORT || 3001;
-const allowList = ["http://rorobot.io", "https://rorobot.io"];
+const allowList = ["http://rorobot.io", "https://rorobot.io", "http://localhost"];
 const corsOptions = {
     origin: allowList,
     methods: "GET,POST",
