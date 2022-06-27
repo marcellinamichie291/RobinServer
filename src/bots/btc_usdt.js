@@ -2,8 +2,8 @@ import axios from "axios";
 import * as ccxt from "ccxt";
 
 const binanceClient = new ccxt.binance({
-  apiKey: "9rfVEhKoETfTwtPRx9trSaDrw72apblev77xwUIWzYJzYsMIT7viCvJoh24JS7Yd",
-  secret: "ADMZ3MYgovyUACDZ26QKLY5S2FVyCI3xTXDfuXTTGiMXQvZlujClghKQjr7x5KRc",
+  apiKey: "3mAq1SOXEmkiPoTUMXW2zBeEZlbq51WeaWbdcccwwDDXORFVFiW9dJ1Gay3uCU1E",
+  secret: "FJ10fwQHMqm4vqQWEAWvKLAb0Oi3wIISkLa0Td0I8OD1KBjjn1hthHBEr27oIeQw",
   // Use the testing api
   baseURL: "https://testnet.binance.vision",
 });
@@ -54,8 +54,8 @@ const tick = async () => {
 };
 
 const runBot_BTC_UDST = () => {
-  tick();
-  // setInterval(tick, config.tickInterval);
+  //tick();
+  setInterval(tick, config.tickInterval);
 };
 
 export default runBot_BTC_UDST;
