@@ -7,7 +7,7 @@ const port = process.env.PORT || 3001;
 const allowList = [
   "http://rorobot.io",
   "https://rorobot.io",
-  "http://localhost",
+  "http://localhost:19006",
 ];
 const corsOptions = {
   origin: allowList,
