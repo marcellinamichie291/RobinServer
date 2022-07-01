@@ -88,7 +88,7 @@ router.post("/getExchanges", jsonParser, async (req, res) => {
     try {
       const exchangesRef = db
         .collection("exchanges")
-        .where("userId", "==", userID);
+        .where("userIds", 'array-contains', userID);
       const doc = await exchangesRef.get();
       const exchanges = doc.docs.map((d) => d.data());
 
