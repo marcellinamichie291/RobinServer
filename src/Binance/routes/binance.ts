@@ -43,26 +43,30 @@ router.post("/getLiveCandleDataFeed", jsonParser, async (req, res) => {
 //This API call is resource expensive
 router.post("/getDailyStats", jsonParser, async (req, res) => {
   if (req.body) {
-    const userID = req.body.userID;
+    const apiKey = req.body.apiKey;
+    const apiSecret = req.body.apiSecret;
 
-    let apiKey, apiSecret;
+    if (!apiKey || !apiSecret) {
+      res.send(404);
+    } else {
+      res.send(await getDailyStats(apiKey, apiSecret));
+    }
+  }
+});
+
+router.post("/getCapitalConfigs", jsonParser, async (req, res) => {
+  if (req.body) {
+    const apiKey = req.body.apiKey;
+    const apiSecret = req.body.apiSecret;
+
 
     // Her kan du hente ut req.body.userID og bruke den videre for å hente accountInformation til den brukeren.
-    if (!userID) {
+    if (!apiKey || !apiSecret) {
       res.send(404);
     }
 
     try {
-      const userRef = db.collection("users").doc(userID);
-      const doc = await userRef.get();
-      if (!doc.exists) {
-        console.log("No such document!");
-      } else {
-        apiKey = doc.data().APIKey;
-        apiSecret = doc.data().APISecret;
-
-        res.send(await getDailyStats(apiKey, apiSecret));
-      }
+      res.send(await getCapitalConfigs(apiKey, apiSecret));
     } catch (e) {
       console.error(e);
       res.send({ error: e, code: 500 });
@@ -72,11 +76,9 @@ router.post("/getDailyStats", jsonParser, async (req, res) => {
   }
 });
 
-router.post("/getCapitalConfigs", jsonParser, async (req, res) => {
+router.post("/getExchanges", jsonParser, async (req, res) => {
   if (req.body) {
     const userID = req.body.userID;
-
-    let apiKey, apiSecret;
 
     // Her kan du hente ut req.body.userID og bruke den videre for å hente accountInformation til den brukeren.
     if (!userID) {
@@ -84,16 +86,13 @@ router.post("/getCapitalConfigs", jsonParser, async (req, res) => {
     }
 
     try {
-      const userRef = db.collection("users").doc(userID);
-      const doc = await userRef.get();
-      if (!doc.exists) {
-        console.log("No such document!");
-      } else {
-        apiKey = doc.data().APIKey;
-        apiSecret = doc.data().APISecret;
+      const exchangesRef = db
+        .collection("exchanges")
+        .where("userId", "==", userID);
+      const doc = await exchangesRef.get();
+      const exchanges = doc.docs.map((d) => d.data());
 
-        res.send(await getCapitalConfigs(apiKey, apiSecret));
-      }
+      res.send(exchanges);
     } catch (e) {
       console.error(e);
       res.send({ error: e, code: 500 });

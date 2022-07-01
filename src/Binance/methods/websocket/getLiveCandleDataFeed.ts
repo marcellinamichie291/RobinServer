@@ -9,9 +9,8 @@ export const getLiveCandleDataFeed = async (
     apiSecret: APISecret,
   });
 
-  const clean = binanceClient.ws.candles("ETHUSDT", "1m", (candle) => {
-    return(candle);
+  binanceClient.ws.candles("ETHUSDT", "1m", (candle) => {
+    console.log(candle);
   });
 
-  clean();
 };
