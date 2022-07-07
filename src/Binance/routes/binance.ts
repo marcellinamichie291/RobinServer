@@ -46,6 +46,8 @@ router.post("/getDailyStats", jsonParser, async (req, res) => {
     const apiKey = req.body.apiKey;
     const apiSecret = req.body.apiSecret;
 
+    console.log({ apiKey, apiSecret });
+
     if (!apiKey || !apiSecret) {
       res.send(404);
     } else {
@@ -58,7 +60,6 @@ router.post("/getCapitalConfigs", jsonParser, async (req, res) => {
   if (req.body) {
     const apiKey = req.body.apiKey;
     const apiSecret = req.body.apiSecret;
-
 
     // Her kan du hente ut req.body.userID og bruke den videre for å hente accountInformation til den brukeren.
     if (!apiKey || !apiSecret) {
@@ -88,7 +89,7 @@ router.post("/getExchanges", jsonParser, async (req, res) => {
     try {
       const exchangesRef = db
         .collection("exchanges")
-        .where("userIds", 'array-contains', userID);
+        .where("userIds", "array-contains", userID);
       const doc = await exchangesRef.get();
       const exchanges = doc.docs.map((d) => d.data());
 
